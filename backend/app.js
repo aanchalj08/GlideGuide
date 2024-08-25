@@ -15,11 +15,12 @@ const {
 const app = express();
 const port = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
+const BASE_URL = process.env.BASE_URL;
 
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: BASE_URL,
     methods: "GET,POST",
     allowedHeaders: "Content-Type,Authorization",
   })
@@ -41,7 +42,9 @@ const start = async () => {
   try {
     await connectDB(MONGODB_URI);
     app.listen(port, () => {});
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 start();

@@ -8,6 +8,7 @@ const jwtSecret = process.env.JWT_SECRET;
 const weatherApiKey = process.env.WEATHER_API_KEY;
 const placesApiKey = process.env.PLACES_API_KEY;
 const geminiApiKey = process.env.GEMINI_API_KEY;
+const BASE_URL = process.env.BASE_URL;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -95,7 +96,7 @@ const forgotPassword = async (req, res) => {
   user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
 
   await user.save();
-  const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
+  const resetUrl = `${BASE_URL}/reset-password/${resetToken}`;
 
   const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
 
