@@ -23,6 +23,7 @@ const Login = () => {
     let password = e.target.password.value;
     let confirmPassword = e.target.confirmPassword.value;
     const passwordRegex = /^(?=.*\d)[A-Za-z\d@$!%*?&]{5,}$/;
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     if (
       name.length > 0 &&
@@ -45,7 +46,7 @@ const Login = () => {
         };
         try {
           const response = await axios.post(
-            "http://localhost:3000/api/v1/register",
+            `${baseUrl}/api/v1/register`,
             formData
           );
           toast.success("Registration successful");

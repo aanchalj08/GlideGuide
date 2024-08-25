@@ -14,6 +14,7 @@ const DisplayItinerary = () => {
     accommodationType,
     itineraryData,
   } = location.state || {};
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   if (!weatherData || !restaurantData || !accommodationData || !itineraryData) {
     return <div>Loading... or No data available.</div>;
@@ -23,7 +24,7 @@ const DisplayItinerary = () => {
     try {
       const token = JSON.parse(localStorage.getItem("auth"));
       const response = await axios.post(
-        "http://localhost:3000/api/v1/itinerary/save-itinerary",
+        `${baseUrl}/api/v1/itinerary/save-itinerary`,
         {
           itineraryData,
           weatherData,

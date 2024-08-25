@@ -4,7 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "../styles/Dashboard.css";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import mountainImage from "../assets/mountain.jpeg";
@@ -42,6 +42,7 @@ const Dashboard = () => {
   const [minDate, setMinDate] = useState("");
   const backgroundImages = [mountainImage, beachImage, natureImage];
   const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const fetchName = async () => {
     let axiosConfig = {
@@ -52,7 +53,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/dashboard",
+        `${baseUrl}/api/v1/dashboard`,
         axiosConfig
       );
       setData({ msg: response.data.msg, luckyNumber: response.data.secret });
@@ -112,22 +113,19 @@ const Dashboard = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/trip-data",
-        {
-          destinationCity: formData.destinationCity,
-          startDate: formData.startDate,
-          endDate: formData.endDate,
-          cuisine: formData.cuisine,
-          accommodationType: formData.accommodationType,
-          sourceCity: formData.sourceCity,
-          travelStyles: formData.travelStyles,
-          interests: formData.interests,
-          activityTypes: formData.activityTypes,
-          language: formData.language,
-          budget: formData.budget,
-        }
-      );
+      const response = await axios.post(`${baseUrl}/api/v1/trip-data`, {
+        destinationCity: formData.destinationCity,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        cuisine: formData.cuisine,
+        accommodationType: formData.accommodationType,
+        sourceCity: formData.sourceCity,
+        travelStyles: formData.travelStyles,
+        interests: formData.interests,
+        activityTypes: formData.activityTypes,
+        language: formData.language,
+        budget: formData.budget,
+      });
 
       setIsLoading(false);
 

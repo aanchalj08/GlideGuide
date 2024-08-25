@@ -12,6 +12,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { resetToken } = useParams();
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const ResetPassword = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/reset-password/${resetToken}`,
+        `${baseUrl}/api/v1/reset-password/${resetToken}`,
         { password }
       );
       localStorage.setItem("auth", JSON.stringify(response.data.token));

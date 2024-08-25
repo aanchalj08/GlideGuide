@@ -8,19 +8,17 @@ const ItineraryDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchItinerary = async () => {
       try {
         const token = JSON.parse(localStorage.getItem("auth"));
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/itinerary/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/api/v1/itinerary/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setItinerary(response.data.itinerary);
         setLoading(false);
       } catch (err) {

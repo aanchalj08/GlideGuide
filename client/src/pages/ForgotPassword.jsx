@@ -7,14 +7,15 @@ import axios from "axios";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/forgot-password",
-        { email }
-      );
+      const response = await axios.post(`${baseUrl}/api/v1/forgot-password`, {
+        email,
+      });
       toast.success("Reset link sent to email");
       setEmail("");
     } catch (error) {

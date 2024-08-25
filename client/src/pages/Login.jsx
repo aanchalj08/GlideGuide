@@ -18,6 +18,7 @@ const Login = () => {
     e.preventDefault();
     let email = e.target.email.value;
     let password = e.target.password.value;
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     if (email.length > 0 && password.length > 0) {
       const formData = {
@@ -25,10 +26,7 @@ const Login = () => {
         password,
       };
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/v1/login",
-          formData
-        );
+        const response = await axios.post(`${baseUrl}/api/v1/login`, formData);
         localStorage.setItem("auth", JSON.stringify(response.data.token));
         toast.success("Login successful");
         navigate("/dashboard");

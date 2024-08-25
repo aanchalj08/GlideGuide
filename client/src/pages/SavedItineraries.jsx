@@ -8,13 +8,14 @@ const SavedItineraries = () => {
   const [itineraries, setItineraries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const fetchItineraries = async () => {
       try {
         const token = JSON.parse(localStorage.getItem("auth"));
         const response = await axios.get(
-          "http://localhost:3000/api/v1/itinerary/user-itineraries",
+          `${baseUrl}/api/v1/itinerary/user-itineraries`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
