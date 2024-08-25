@@ -46,17 +46,16 @@ Glide Guide is a web application designed to revolutionize travel planning. It g
 
 1. Clone the repository
 2. Install dependencies
-3. Set up environment variables
-   Create a `.env` file in the backend directory and add the following:
+3. Set up environment variables. Create a `.env` file in the backend directory and add the following:
 
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PLACES_API_KEY=your_google_maps_api_key
-WEATHER_API_KEY=your_visual_crossing_api_key
-GEMINI_API_KEY=your_gemini_api_key
-SMP_PASS=smp_password
-SMP_EMAIL=smp_email
-PORT
+- MONGODB_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- PLACES_API_KEY=your_google_maps_api_key
+- WEATHER_API_KEY=your_visual_crossing_api_key
+- GEMINI_API_KEY=your_gemini_api_key
+- SMP_PASS=smp_password
+- SMP_EMAIL=smp_email
+- PORT
 
 ## Usage
 
